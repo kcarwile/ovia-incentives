@@ -1,0 +1,11 @@
+{
+    "name": "ovia/incentives",
+    "description": "Ovia Incentives Management",
+    "type": "project",
+    "require": {},
+	"autoload": {
+		"psr-4": {
+		  "Ovia\\Incentives\\": "classes/"
+		}
+	}
+}
