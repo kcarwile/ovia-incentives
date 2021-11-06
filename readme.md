@@ -14,10 +14,10 @@ This plugin utilizes the MWP Framework. To contribute to its development, begin 
 
 The following classes are used for persisting data within the app.
 
-* [User](/classes/models/User.php) - A known user of Ovia apps
-* [Employer](/classes/models/Employer.php) - An employer who is eligible to use incentive programs
-* [EmployerProgram](/classes/models/EmployerProgram.php) - A record that ties an incentive program to an employer
-* [UserAward](/classes/models/UserAward.php) - A record used to track the award progress for a user in an employer program
+* [User](/classes/Models/User.php) - A known user of Ovia apps
+* [Employer](/classes/Models/Employer.php) - An employer who is eligible to use incentive programs
+* [EmployerProgram](/classes/Models/EmployerProgram.php) - A record that ties an incentive program to an employer
+* [UserAward](/classes/Models/UserAward.php) - A record used to track the award progress for a user in an employer program
 
 
 ### Domains
