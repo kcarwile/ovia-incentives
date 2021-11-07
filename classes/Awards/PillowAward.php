@@ -17,38 +17,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * PillowAward
  */
-class _PillowAward
+class PillowAward
 {
+
 	/**
-	 * @var 	\MWP\Framework\Plugin		Provides access to the plugin instance
+	 * Deliver this award to a user
+	 * 
+	 * @param	UserAward					$userAward					The user award to deliver
+	 * @return	void
+	 * @throws 	LogicException
 	 */
-	protected $plugin;
-	
-	/**
- 	 * Get plugin
-	 *
-	 * @return	\MWP\Framework\Plugin
-	 */
-	public function getPlugin()
-	{
-		if ( isset( $this->plugin ) ) {
-			return $this->plugin;
-		}
-		
-		$this->setPlugin( \Ovia\Incentives\Plugin::instance() );
-		
-		return $this->plugin;
+	public function deliverAward( UserAward $userAward ) { 
+		// Send a pillow the to user
 	}
-	
-	/**
-	 * Set plugin
-	 *
-	 * @return	this			Chainable
-	 */
-	public function setPlugin( \MWP\Framework\Plugin $plugin=NULL )
-	{
-		$this->plugin = $plugin;
-		return $this;
-	}
-	
+
+
 }

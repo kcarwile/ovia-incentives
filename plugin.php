@@ -38,6 +38,16 @@ add_action( 'mwp_framework_init', function()
 	 */
 	$plugin	= Ovia\Incentives\Plugin::instance();
 	$framework->attach( $plugin );
+
+	/* Add API Endpoints */
+	$framework->attach( Ovia\Incentives\API::instance() );
+
+	/* Register Programs */
+	$plugin->registerProgram( new \Ovia\Incentives\Programs\BirthProgram );
+	$plugin->registerProgram( new \Ovia\Incentives\Programs\EngagementProgram );
+
+	/* Register Awards */
+	$plugin->registerAward( new \Ovia\Incentives\Awards\PillowAward );
 	
 	/**
 	 * Plugin Settings 

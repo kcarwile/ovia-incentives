@@ -19,7 +19,7 @@ use MWP\Framework\Pattern\ActiveRecord;
 /**
  * UserAward Class
  */
-class _UserAward extends ActiveRecord
+class UserAward extends ActiveRecord
 {
 	/**
 	 * @var	array		Multitons cache (needs to be defined in subclasses also)
@@ -36,67 +36,15 @@ class _UserAward extends ActiveRecord
 	 */
 	protected static $columns = array(
 		'id',
-		'title' => [ 'type' => 'varchar', 'length' => 255 ],
+		'user_id' => [ 'type' => 'varchar', 'length' => 20 ],
+		'employer_program_award_id' => [ 'type' => 'varchar', 'length' => 255, 'allow_null' => false ],
+		'status' => [ 'type' => 'varchar', 'length' => 20, 'allow_null' => false, 'default' => 'pending' ],
 	);
-	
-	/**
-	 * @var	string		Table primary key
-	 */
-	protected static $key = 'id';
-	
-	/**
-	 * @var	string		Table column prefix
-	 */
-	protected static $prefix = '';
-	
-	/**
-	 * @var bool		Site specific table? (for multisites)
-	 */
-	protected static $site_specific = FALSE;
 	
 	/**
 	 * @var	string
 	 */
 	protected static $plugin_class = 'Ovia\Incentives\Plugin';
-	
-	/**
-	 * @var	string
-	 */
-	public static $sequence_col;
-	
-	/**
-	 * @var	string
-	 */
-	public static $parent_col;
 
-	/**
-	 * @var	string
-	 */
-	public static $lang_singular = 'Record';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_plural = 'Records';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_view = 'View';
-
-	/**
-	 * @var	string
-	 */
-	public static $lang_create = 'Create';
-
-	/**
-	 * @var	string
-	 */
-	public static $lang_edit = 'Edit';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_delete = 'Delete';
 
 }

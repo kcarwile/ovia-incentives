@@ -14,41 +14,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Access denied.' );
 }
 
+use Ovia\Incentives\Models\User;
+use Ovia\Incentives\Models\EmployerProgram;
+
 /**
  * EngagementProgram
  */
-class _EngagementProgram
+class EngagementProgram extends AbstractProgram
 {
+
 	/**
-	 * @var 	\MWP\Framework\Plugin		Provides access to the plugin instance
-	 */
-	protected $plugin;
-	
-	/**
- 	 * Get plugin
+	 * Get the program key
 	 *
-	 * @return	\MWP\Framework\Plugin
+	 * @return	string
 	 */
-	public function getPlugin()
-	{
-		if ( isset( $this->plugin ) ) {
-			return $this->plugin;
-		}
-		
-		$this->setPlugin( \Ovia\Incentives\Plugin::instance() );
-		
-		return $this->plugin;
+	public function getKey() { 
+		return 'engagement';
 	}
-	
+
 	/**
-	 * Set plugin
+	 * Get the program name
 	 *
-	 * @return	this			Chainable
+	 * @return	string
 	 */
-	public function setPlugin( \MWP\Framework\Plugin $plugin=NULL )
-	{
-		$this->plugin = $plugin;
-		return $this;
+	public function getName() { 
+		return 'User is engaged';
+	}
+
+	/**
+	 * Process an app event for a given user
+	 * 
+	 * @param	array				$event				The event details
+	 * @param	UserProgress		$userProgess		The user progress tracker for the program
+	 * @return	void
+	 */
+	public function processEvent( $event, UserProgress $userProgress ) { 
+		if ( $event['type'] != 'activity' ) {
+			return;
+		}
+
+		// check for 5 days in a row of activity
 	}
 	
 }

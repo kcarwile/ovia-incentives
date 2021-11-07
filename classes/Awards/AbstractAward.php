@@ -17,38 +17,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * AbstractAward
  */
-class _AbstractAward
+class AbstractAward
 {
+
 	/**
-	 * @var 	\MWP\Framework\Plugin		Provides access to the plugin instance
+	 * Grant this award to a user
+	 * 
+	 * @param	User		$user			The user to grant the award to
+	 * @return	void
+	 * @throws 	LogicException
 	 */
-	protected $plugin;
-	
-	/**
- 	 * Get plugin
-	 *
-	 * @return	\MWP\Framework\Plugin
-	 */
-	public function getPlugin()
-	{
-		if ( isset( $this->plugin ) ) {
-			return $this->plugin;
-		}
-		
-		$this->setPlugin( \Ovia\Incentives\Plugin::instance() );
-		
-		return $this->plugin;
+	public function grantAward( User $user, EmployerProgramAward $employerProgramAward ) { 
+		// Write a record to the UserAward table.
 	}
-	
+
 	/**
-	 * Set plugin
-	 *
-	 * @return	this			Chainable
+	 * Deliver this award to a user
+	 * 
+	 * @param	UserAward					$userAward					The user award to deliver
+	 * @return	void
+	 * @throws 	LogicException
 	 */
-	public function setPlugin( \MWP\Framework\Plugin $plugin=NULL )
-	{
-		$this->plugin = $plugin;
-		return $this;
-	}
+	abstract public function deliverAward( UserAward $userAward ) { }
 	
 }

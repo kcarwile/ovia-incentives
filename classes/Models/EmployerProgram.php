@@ -19,7 +19,7 @@ use MWP\Framework\Pattern\ActiveRecord;
 /**
  * EmployerProgram Class
  */
-class _EmployerProgram extends ActiveRecord
+class EmployerProgram extends ActiveRecord
 {
 	/**
 	 * @var	array		Multitons cache (needs to be defined in subclasses also)
@@ -37,66 +37,70 @@ class _EmployerProgram extends ActiveRecord
 	protected static $columns = array(
 		'id',
 		'title' => [ 'type' => 'varchar', 'length' => 255 ],
+		'employer_id' => [ 'type' => 'int', 'length' => 20 ],
+		'program_key' => [ 'type' => 'varchar', 'length' => 20 ],
+		'config' => [ 'type' => 'text', 'format' => 'JSON' ],
 	);
-	
-	/**
-	 * @var	string		Table primary key
-	 */
-	protected static $key = 'id';
-	
-	/**
-	 * @var	string		Table column prefix
-	 */
-	protected static $prefix = '';
-	
-	/**
-	 * @var bool		Site specific table? (for multisites)
-	 */
-	protected static $site_specific = FALSE;
 	
 	/**
 	 * @var	string
 	 */
 	protected static $plugin_class = 'Ovia\Incentives\Plugin';
-	
-	/**
-	 * @var	string
-	 */
-	public static $sequence_col;
-	
-	/**
-	 * @var	string
-	 */
-	public static $parent_col;
 
 	/**
-	 * @var	string
+	 * Process an app event for a given user
+	 * 
+	 * @param	array				$event				The event details
+	 * @param	UserProgress		$userProgess		The user progress tracker for the program
+	 * @return	void
+	 * @throws 	LogicException
 	 */
-	public static $lang_singular = 'Record';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_plural = 'Records';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_view = 'View';
+	public function processEvent( $event, UserProgress $userProgress ) { 
+		try {
+			$this->getProgram()->processEvent( $event, $userProgress );
+		}
+		catch( \OutOfRangeException ) {
+			throw new \LogicException( 'Program not found when trying to process an event for employer program: ' . $this->id() );
+		}
+	}
 
 	/**
-	 * @var	string
+	 * Get the progress tracker for a user
+	 * 
+	 * @param	User			$user			The user to get the tracker for
+	 * @return	UserProgress
 	 */
-	public static $lang_create = 'Create';
+	public function getUserProgress( User $user ) {
+		return $this->getProgram()->getUserProgress( $user, $this );
+	}
 
 	/**
-	 * @var	string
+	 * Get the program
+	 * 
+	 * @return	Ovia\Incentives\Programs\AbstractProgram
+	 * @throws	OutOfRangeException
 	 */
-	public static $lang_edit = 'Edit';
-	
+	public function getProgram() {
+		return $this->getPlugin()->getProgram( $this->program_key );
+	}
+
 	/**
-	 * @var	string
+	 * Get the associated employer 
+	 * 
+	 * @return	Employer
+	 * @throws 	OutOfRangeException
 	 */
-	public static $lang_delete = 'Delete';
+	public function getEmployer() {
+		return Employer::load( $this->employer_id );
+	}
+
+	/**
+	 * Get the awards assigned to this employer program
+	 *
+	 * @return	array[EmployerProgramAward]
+	 */
+	public function getProgramAwards() {
+		return EmployerProgramAward::loadWhere([ 'employer_program_id = %d', $this->id() ]);
+	}
 
 }

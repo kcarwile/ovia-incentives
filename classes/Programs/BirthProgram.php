@@ -14,41 +14,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Access denied.' );
 }
 
+use Ovia\Incentives\Models\User;
+use Ovia\Incentives\Models\EmployerProgram;
+
+
 /**
  * BirthProgram
  */
-class _BirthProgram
+class BirthProgram extends AbstractProgram
 {
+
 	/**
-	 * @var 	\MWP\Framework\Plugin		Provides access to the plugin instance
-	 */
-	protected $plugin;
-	
-	/**
- 	 * Get plugin
+	 * Get the program key
 	 *
-	 * @return	\MWP\Framework\Plugin
+	 * @return	string
 	 */
-	public function getPlugin()
-	{
-		if ( isset( $this->plugin ) ) {
-			return $this->plugin;
-		}
-		
-		$this->setPlugin( \Ovia\Incentives\Plugin::instance() );
-		
-		return $this->plugin;
+	public function getKey() { 
+		return 'birth';
 	}
-	
+
 	/**
-	 * Set plugin
+	 * Get the program name
 	 *
-	 * @return	this			Chainable
+	 * @return	string
 	 */
-	public function setPlugin( \MWP\Framework\Plugin $plugin=NULL )
-	{
-		$this->plugin = $plugin;
-		return $this;
+	public function getName() { 
+		return 'Baby was born';
+	}
+
+	/**
+	 * Process an app event for a given user
+	 * 
+	 * @param	array				$event				The event details
+	 * @param	UserProgress		$userProgess		The user progress tracker for the program
+	 * @return	void
+	 */
+	public function processEvent( $event, UserProgress $userProgress ) { 
+		// check if this event is of concern
+		if ( $event['type'] == 'birth' ) {
+			$userProgress->status = 'complete';
+		}
 	}
 	
 }

@@ -19,7 +19,7 @@ use MWP\Framework\Pattern\ActiveRecord;
 /**
  * User Class
  */
-class _User extends ActiveRecord
+class User extends ActiveRecord
 {
 	/**
 	 * @var	array		Multitons cache (needs to be defined in subclasses also)
@@ -35,24 +35,9 @@ class _User extends ActiveRecord
 	 * @var	array		Table columns
 	 */
 	protected static $columns = array(
-		'id',
-		'title' => [ 'type' => 'varchar', 'length' => 255 ],
+		'user_id' => [ 'type' => 'varchar', 'length' => 20, 'allow_null' => false ],
+		'employer_id' => [ 'type' => 'int', 'length' => 20, 'allow_null' => false, 'default' => 0 ],
 	);
-	
-	/**
-	 * @var	string		Table primary key
-	 */
-	protected static $key = 'id';
-	
-	/**
-	 * @var	string		Table column prefix
-	 */
-	protected static $prefix = '';
-	
-	/**
-	 * @var bool		Site specific table? (for multisites)
-	 */
-	protected static $site_specific = FALSE;
 	
 	/**
 	 * @var	string
@@ -60,43 +45,13 @@ class _User extends ActiveRecord
 	protected static $plugin_class = 'Ovia\Incentives\Plugin';
 	
 	/**
-	 * @var	string
+	 * Get the employer
+	 * 
+	 * @return	Employer
+	 * @throws 	OutOfRangeException
 	 */
-	public static $sequence_col;
-	
-	/**
-	 * @var	string
-	 */
-	public static $parent_col;
-
-	/**
-	 * @var	string
-	 */
-	public static $lang_singular = 'Record';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_plural = 'Records';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_view = 'View';
-
-	/**
-	 * @var	string
-	 */
-	public static $lang_create = 'Create';
-
-	/**
-	 * @var	string
-	 */
-	public static $lang_edit = 'Edit';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_delete = 'Delete';
+	public function getEmployer() {
+		return Employer::load( $this->employer_id );
+	}
 
 }
