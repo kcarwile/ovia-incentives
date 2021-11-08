@@ -5,7 +5,7 @@
  * Description: Prototype app to manage Employer incentives programs for Ovia apps.
  * Author: Kevin Carwile
  * Author URI: 
- * Version: 0.0.0
+ * Version: 1.0.0
  */
  
 if ( ! defined( 'ABSPATH' ) ) {

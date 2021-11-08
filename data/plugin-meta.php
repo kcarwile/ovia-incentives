@@ -15,6 +15,7 @@ return <<<'JSON'
         "incentives_employerprogram",
         "incentives_employer"
     ],
-    "ms_tables": []
+    "ms_tables": [],
+    "version": "1.0.0"
 }
 JSON;

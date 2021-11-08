@@ -6,7 +6,7 @@
  *
  * @package:  Ovia Incentives Management
  * @author:   Kevin Carwile
- * @since:    {build_version}
+ * @since:    1.0.0
  */
 namespace Ovia\Incentives\Programs;
 

@@ -2,6 +2,7 @@
 return <<<'JSON'
 {
     "framework_version": "2.2.15",
+    "framework_bundled": true,
     "tables": [
         {
             "name": "incentives_useraward",
@@ -196,15 +197,16 @@ return <<<'JSON'
             "columns": {
                 "user_id": {
                     "allow_null": false,
-                    "auto_increment": true,
+                    "auto_increment": false,
                     "binary": false,
+                    "collation": "utf8mb4_unicode_ci",
                     "comment": "",
                     "decimals": null,
-                    "default": null,
+                    "default": "",
                     "length": 20,
                     "name": "user_id",
-                    "type": "BIGINT",
-                    "unsigned": true,
+                    "type": "VARCHAR",
+                    "unsigned": false,
                     "values": [],
                     "zerofill": false
                 },
