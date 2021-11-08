@@ -20,7 +20,7 @@ use MWP\Framework\Task;
 /**
  * API
  */
-class _API extends Singleton
+class API extends Singleton
 {
 	/**
 	 * @var self
@@ -30,7 +30,7 @@ class _API extends Singleton
 	/**
 	 * Receive an event from an Ovia app
 	 *
-	 * @MWP\WordPress\RestRoute( namespace="ovia/v1", methods="POST", route="/event",
+	 * @MWP\WordPress\RestRoute( namespace="ovia/v1", methods="POST", route="/events",
 	 *   args={
 	 *     "user_id" : { "required": true },
 	 *     "event" : { "required": true },

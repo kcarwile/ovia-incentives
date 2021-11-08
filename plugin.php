@@ -40,7 +40,7 @@ add_action( 'mwp_framework_init', function()
 	$framework->attach( $plugin );
 
 	/* Add API Endpoints */
-	$framework->attach( Ovia\Incentives\API::instance() );
+	$framework->attach( \Ovia\Incentives\API::instance() );
 
 	/* Register Programs */
 	$plugin->registerProgram( new \Ovia\Incentives\Programs\BirthProgram );
