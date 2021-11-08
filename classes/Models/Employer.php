@@ -44,5 +44,12 @@ class _Employer extends ActiveRecord
 	 */
 	protected static $key = 'id';
 	
-
+	/**
+	 * Get the active programs for this employer
+	 * 
+	 * @return	array[EmployerProgram]
+	 */
+	public function getActivePrograms() {
+		return EmployerProgram::loadWhere([ 'employer_id = %d', $this->id() ]);
+	}
 }

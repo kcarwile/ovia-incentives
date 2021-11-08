@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use Ovia\Incentives\Models\User;
 use Ovia\Incentives\Models\EmployerProgram;
+use Ovia\Incentives\Models\UserProgress;
 
 /**
  * AbstractProgram

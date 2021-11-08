@@ -14,9 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Access denied.' );
 }
 
-use Ovia\Incentives\Models\User;
-use Ovia\Incentives\Models\EmployerProgram;
-
+use Ovia\Incentives\Models\UserProgress;
 
 /**
  * BirthProgram

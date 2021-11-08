@@ -14,6 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Access denied.' );
 }
 
+use Ovia\Incentives\Models\User;
+use Ovia\Incentives\Models\EmployerProgramAward;
+use Ovia\Incentives\Models\UserAward;
+
 /**
  * AbstractAward
  */

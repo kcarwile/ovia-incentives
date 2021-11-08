@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Access denied.' );
 }
 
+use Ovia\Incentives\Models\UserAward;
+
 /**
  * PillowAward
  */

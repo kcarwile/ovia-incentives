@@ -117,7 +117,7 @@ class Plugin extends \MWP\Framework\Plugin
 		$next_employer_program_id = array_shift( $remainingPrograms );
 
 		try {
-			$employerProgram = EmployerProgram::load( $next_employer_program_id );
+			$employerProgram = Models\EmployerProgram::load( $next_employer_program_id );
 		}
 		catch( \OutOfRangeException $e ) {
 			$task->log("Something went wrong. The employer program with id: {$next_employer_program_id} couldn't be loaded.");
@@ -137,10 +137,11 @@ class Plugin extends \MWP\Framework\Plugin
 					foreach( $employerProgram->getProgramAwards() as $employerProgramAward ) {
 						try {
 							$employerProgramAward->grantAward( $user );
+							$task->log( 'Award granted to user: ' . $employerProgramAward->id() );
 						}
 						catch( \LogicException $e ) {
-							$task->log('Error trying to grant award: ' . $employerProgramAward->id() );
-							$task->log('Error was: ' . $e->getMessage() );
+							$task->log( 'Error trying to grant award: ' . $employerProgramAward->id() );
+							$task->log( 'Error was: ' . $e->getMessage() );
 						}
 					}
 				}
