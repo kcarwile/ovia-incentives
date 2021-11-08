@@ -27,14 +27,14 @@ abstract class AbstractProgram
 	 *
 	 * @return	string
 	 */
-	abstract public function getKey() { }
+	abstract public function getKey();
 
 	/**
 	 * Get the program name
 	 *
 	 * @return	string
 	 */
-	abstract public function getName() { }
+	abstract public function getName();
 
 	/**
 	 * Process an app event for a given user
@@ -43,12 +43,13 @@ abstract class AbstractProgram
 	 * @param	UserProgress		$userProgess		The user progress tracker for the program
 	 * @return	void
 	 */
-	abstract public function processEvent( $event, UserProgress $userProgress ) { }
+	abstract public function processEvent( $event, UserProgress $userProgress );
 
 	/**
 	 * Get the progress tracker for a user
 	 * 
-	 * @param	User			$user			The user to get the tracker for
+	 * @param	User				$user					The user to get the tracker for
+	 * @param	EmployerProgram		$employerProgram		The employer program progress is being tracked for
 	 * @return	UserProgress
 	 * @throws	OutOfRangeException
 	 */

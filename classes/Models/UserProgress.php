@@ -22,6 +22,11 @@ use MWP\Framework\Pattern\ActiveRecord;
 class UserProgress extends ActiveRecord
 {
 	/**
+	 * @var	string		Table primary key
+	 */
+	protected static $key = 'id';
+	
+	/**
 	 * @var	array		Multitons cache (needs to be defined in subclasses also)
 	 */
 	protected static $multitons = array();
@@ -38,7 +43,7 @@ class UserProgress extends ActiveRecord
 		'id',
 		'user_id' => [ 'type' => 'varchar', 'length' => 20 ],
 		'employer_program_id' => [ 'type' => 'int', 'lenth' => 20, 'allow_null' => false ],
-		'status' => [ 'type' => 'varchar', 'length' => '10', 'allow_null' => false, 'default' => 'in_progress' ],
+		'status' => [ 'type' => 'varchar', 'length' => 15, 'allow_null' => false, 'default' => 'in_progress' ],
 		'data' => [ 'type' => 'text', 'format' => 'JSON' ],
 	);
 	

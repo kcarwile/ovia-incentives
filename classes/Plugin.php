@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Ovia\Incentives\Models;
+use Ovia\Incentives\Programs\AbstractProgram;
+use Ovia\Incentives\Awards\AbstractAward;
 
 /**
  * Plugin Class
@@ -53,7 +55,7 @@ class Plugin extends \MWP\Framework\Plugin
 	public function processEvent( \MWP\Framework\Task $task ) 
 	{
 		/**
-		 * Task Runner Notes.
+		 * Task Runner Notes:
 		 * 
 		 * Will be run repeatedly for $task until one of $task->complete() 
 		 * or $task->fail() is called.
@@ -159,10 +161,10 @@ class Plugin extends \MWP\Framework\Plugin
 	/**
 	 * Register a program
 	 *
-	 * @param	Ovia\Incentives\Programs\AbstractProgram		$program		An instance of the program to register
+	 * @param	AbstractProgram		$program		An instance of the program to register
 	 * @return	void
 	 */
-	public function registerProgram( \Ovia\Incentives\Programs\AbstractProgram $program ) {
+	public function registerProgram( AbstractProgram $program ) {
 		$program_key = $program->getKey();
 		$this->programs[ $program_key ] = $program;
 	}
@@ -171,7 +173,7 @@ class Plugin extends \MWP\Framework\Plugin
 	 * Get a program by key
 	 *
 	 * @param	string			$program_key		The key of the program
-	 * @return	Ovia\Incentives\Programs\AbstractProgram
+	 * @return	AbstractProgram
 	 * @throws 	OutOfRangeException
 	 */
 	public function getProgram( string $program_key ) {
@@ -187,10 +189,10 @@ class Plugin extends \MWP\Framework\Plugin
 	/**
 	 * Register an award
 	 *
-	 * @param	Ovia\Incentives\Programs\AbstractProgram		$program		An instance of the program to register
+	 * @param	AbstractProgram		$program		An instance of the program to register
 	 * @return	void
 	 */
-	public function registerAward( \Ovia\Incentives\Programs\AbstractAward $award ) {
+	public function registerAward( AbstractAward $award ) {
 		$award_key = $award->getKey();
 		$this->awards[ $award_key ] = $award;
 	}
@@ -199,7 +201,7 @@ class Plugin extends \MWP\Framework\Plugin
 	 * Get an award by key
 	 *
 	 * @param	string			$award_key			The key of the award
-	 * @return	Ovia\Incentives\Awards\AbstractAward
+	 * @return	AbstractAward
 	 * @throws 	OutOfRangeException
 	 */
 	public function getAward( string $award_key ) {

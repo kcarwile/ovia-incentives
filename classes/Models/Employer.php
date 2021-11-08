@@ -44,59 +44,5 @@ class _Employer extends ActiveRecord
 	 */
 	protected static $key = 'id';
 	
-	/**
-	 * @var	string		Table column prefix
-	 */
-	protected static $prefix = '';
-	
-	/**
-	 * @var bool		Site specific table? (for multisites)
-	 */
-	protected static $site_specific = FALSE;
-	
-	/**
-	 * @var	string
-	 */
-	protected static $plugin_class = 'Ovia\Incentives\Plugin';
-	
-	/**
-	 * @var	string
-	 */
-	public static $sequence_col;
-	
-	/**
-	 * @var	string
-	 */
-	public static $parent_col;
-
-	/**
-	 * @var	string
-	 */
-	public static $lang_singular = 'Record';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_plural = 'Records';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_view = 'View';
-
-	/**
-	 * @var	string
-	 */
-	public static $lang_create = 'Create';
-
-	/**
-	 * @var	string
-	 */
-	public static $lang_edit = 'Edit';
-	
-	/**
-	 * @var	string
-	 */
-	public static $lang_delete = 'Delete';
 
 }

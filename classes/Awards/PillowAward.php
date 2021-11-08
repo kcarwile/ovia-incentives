@@ -17,8 +17,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * PillowAward
  */
-class PillowAward
+class PillowAward extends AbstractAward
 {
+
+	/**
+	 * Get the award key
+	 *
+	 * @return	string
+	 */
+	public function getKey() { 
+		return 'pillow';
+	}
+
+	/**
+	 * Get the award name
+	 *
+	 * @return	string
+	 */
+	public function getName() { 
+		return 'Pregnancy Pillow';
+	}
 
 	/**
 	 * Deliver this award to a user

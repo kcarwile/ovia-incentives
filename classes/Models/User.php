@@ -22,6 +22,11 @@ use MWP\Framework\Pattern\ActiveRecord;
 class User extends ActiveRecord
 {
 	/**
+	 * @var	string		Table primary key
+	 */
+	protected static $key = 'user_id';
+	
+	/**
 	 * @var	array		Multitons cache (needs to be defined in subclasses also)
 	 */
 	protected static $multitons = array();

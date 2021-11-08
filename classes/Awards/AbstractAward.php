@@ -17,8 +17,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * AbstractAward
  */
-class AbstractAward
+abstract class AbstractAward
 {
+
+	/**
+	 * Deliver this award to a user
+	 * 
+	 * @param	UserAward					$userAward					The user award to deliver
+	 * @return	void
+	 * @throws 	LogicException
+	 */
+	abstract public function deliverAward( UserAward $userAward );
 
 	/**
 	 * Grant this award to a user
@@ -28,16 +37,10 @@ class AbstractAward
 	 * @throws 	LogicException
 	 */
 	public function grantAward( User $user, EmployerProgramAward $employerProgramAward ) { 
-		// Write a record to the UserAward table.
+		$userAward = new UserAward;
+		$userAward->employer_program_award_id = $employerProgramAward->id();
+		$userAward->user_id = $user->id();
+		$userAward->save();
 	}
-
-	/**
-	 * Deliver this award to a user
-	 * 
-	 * @param	UserAward					$userAward					The user award to deliver
-	 * @return	void
-	 * @throws 	LogicException
-	 */
-	abstract public function deliverAward( UserAward $userAward ) { }
 	
 }

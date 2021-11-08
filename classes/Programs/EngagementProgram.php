@@ -53,7 +53,47 @@ class EngagementProgram extends AbstractProgram
 			return;
 		}
 
+		if ( ! is_integer( $event['timestamp'] ) ) {
+			return;
+		}
+
+		$consecutiveDays = 5;
+
+		$now = new \DateTime( '@' . $event['timestamp'] );
+		$dayNum = $now->diff( new \DateTime('2021-01-01') )->format('%a');
+
 		// check for 5 days in a row of activity
+		$data = $userProgress->data;
+
+		if ( ! isset( $data['activityLog'] ) ) {
+			$data['activityLog'] = [];
+		}
+
+		if ( ! in_array( $dayNum, $data['activityLog'] ) ) {
+			$data['activityLog'][] = $dayNum;
+			rsort( $data['activityLog'] );
+
+			// Only keep the number of days we want to check
+			$data['activityLog'] = array_slice( $data['activityLog'], 0, $consecutiveDays );
+
+			if ( count( $data['activityLog'] ) == $consecutiveDays ) {
+				$_most_recent = $data['activityLog'][0];
+				$_congrats = true;
+
+				foreach( range(1, $consecutiveDays - 1) as $i ) {
+					if ( $data['activityLog'][$i] != $_most_recent - $i ) {
+						$_congrats = false;
+						break;
+					}
+				}
+
+				if ( $_congrats ) {
+					$userProgress->status = 'complete';
+				}
+			}
+		}
+
+		$userProgress->data = $data;
 	}
 	
 }

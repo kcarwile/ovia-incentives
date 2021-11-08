@@ -22,6 +22,11 @@ use MWP\Framework\Pattern\ActiveRecord;
 class EmployerProgram extends ActiveRecord
 {
 	/**
+	 * @var	string		Table primary key
+	 */
+	protected static $key = 'id';
+	
+	/**
 	 * @var	array		Multitons cache (needs to be defined in subclasses also)
 	 */
 	protected static $multitons = array();
@@ -59,7 +64,7 @@ class EmployerProgram extends ActiveRecord
 		try {
 			$this->getProgram()->processEvent( $event, $userProgress );
 		}
-		catch( \OutOfRangeException ) {
+		catch( \OutOfRangeException $e ) {
 			throw new \LogicException( 'Program not found when trying to process an event for employer program: ' . $this->id() );
 		}
 	}
