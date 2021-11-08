@@ -61,6 +61,8 @@ class UserAward extends ActiveRecord
 		try {
 			$award = $this->getEmployerProgramAward()->getAward();
 			$award->deliverAward( $this );
+			$this->status = 'delivered';
+			$this->save();
 		}
 		catch( \OutOfRangeException $e ) {
 			throw new \LogicException( 'Could not deliver the award due to missing resources.' );
